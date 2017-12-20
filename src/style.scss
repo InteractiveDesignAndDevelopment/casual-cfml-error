@@ -1,7 +1,8 @@
-/*! casual-cfml-error.scss */
+/*! style.scss */
 
 @import '../node_modules/sass-bem/bem';
 @import '../node_modules/breakpoint-sass/stylesheets/breakpoint';
+@import '../node_modules/normalize-scss/sass/normalize';
 @import 'colors';
 
 // We can use all of the Breakpoint control variables with respond-to as well!

@@ -4,7 +4,16 @@
   "description": "Conversational error to avoid scaring clients.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prebuild": "run-s clean",
+    "build": "run-s build:*",
+    "build:css": "run-p build:css:*",
+    "build:css:style": "run-s build:css:style:*",
+    "build:css:style:sass": "node-sass src/style.scss src/style.css",
+    "build:css:style:postcss": "postcss src/style.css --no-map -u postcss-assets autoprefixer postcss-csso -o src/style.min.css",
+    "build:css:normalize": "run-s build:css:normalize:*",
+    "build:css:normalize:postcss": "postcss src/normalize.css --no-map -u postcss-csso -o src/normalize.min.css",
+    "test": "live-server build",
+    "clean": "rimraf build && mkdirp build"
   },
   "repository": {
     "type": "git",
@@ -22,6 +31,7 @@
     "gulp": "^3.9.1",
     "gulp-file-include": "^1.2.0",
     "node-sass": "^4.5.3",
+    "normalize-scss": "^7.0.0",
     "npm-run-all": "^4.1.1",
     "postcss-assets": "^5.0.0",
     "postcss-cli": "^4.1.1",
